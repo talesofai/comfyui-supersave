@@ -98,7 +98,7 @@ async function graphToPrompt() {
         class_type: node.comfyClass,
         title: node.title,
       };
-      workflow.nodes.find(n => n.id == node.id).output_data = output[String(node.id)];
+      // workflow.nodes.find(n => n.id == node.id).output_data = output[String(node.id)];
     }
   }
 
@@ -114,7 +114,11 @@ async function graphToPrompt() {
     }
   }
 
-  workflow.current_output = output;
+  workflow.extra = {
+    api: output,
+    inputs: {},
+    outputs: {},
+  };
 
   return { workflow, output };
 }
